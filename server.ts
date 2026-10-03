@@ -34,31 +34,48 @@ const invoices: Invoice[] = [{
 
 }, {
     id: 2,
-    amount: 35000, 
+    amount: 35000,
     status: 'paid',
     issueDate: '02-10-2026',
     dueDate: '05-11-2026',
-    customer: { 
+    customer: {
         id: 7,
         name: 'Construtora Meridiano',
         email: 'construtora@meridiano.com'
     }
 }];
 
-app.get('api/health', (request, response) => {
+app.get('/api/health', (request, response) => {
     response.status(200).json({ status: 'ok' });
 });
 
-app.get('api/invoices', (request, response) => {
+app.get('/api/invoices', (request, response) => { // mostra todas as faturas
     response.status(200).json(invoices);
 });
 
-app.use((request, response) => {
-    response.status(404).json({ error: { 
-        status: 404,
-        message: 'Recurso não encontrado.' 
+app.get('/api/invoices/:id', (request, response) => { // mostra fatura pelo id
+    const id = +request.params.id; // esse + transforma o request em número
 
-    }})
+    const invoice = invoices.find(invoice => invoice.id === id); // procura algo na lista semelhante ao id
+
+    if (!invoice) response.status(404).json({
+        error: { // responde caso não encontre a fatura
+            status: 404,
+            message: 'Fatura não encontrada.'
+        }
+    });
+    response.status(200).json(invoice); // responde com a fatura encontrada
+});
+
+
+app.use((request, response) => {
+    response.status(404).json({
+        error: {
+            status: 404,
+            message: 'Recurso não encontrado.'
+
+        }
+    })
 }); //permite criar um intermediário que vai executar algo em algum momento (middler). parece com if/else
 
 app.listen(3000); // escutar a porta 3000
