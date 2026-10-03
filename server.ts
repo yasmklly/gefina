@@ -1,4 +1,7 @@
-import {createServer} from 'node:http';
+// import {createServer} from 'node:http'; -> não é mais necessária agora que temos o express
+import express from 'express';
+
+const app = express();
 
 type InvoiceStatus = 'pending' | 'paid';
 
@@ -42,28 +45,20 @@ const invoices: Invoice[] = [{
     }
 }];
 
-createServer(function (request, response) {
-    if (request.url === 'api/health'){
-        response.writeHead(
-        200,
-        { 'content-type': 'application/json'}
-      );
-      response.end(JSON.stringify( { status: 'ok' }));
-      return;
-    }
+app.get('api/health', (request, response) => {
+    response.status(200).json({ status: 'ok' });
+});
 
-    if (request.url === '/api/invoices') {
-        response.writeHead(
-        200,
-        { 'content-type': 'application/json'}
-      );
-      response.end(JSON.stringify(invoices));
-      return;       
-    }
+app.get('api/invoices', (request, response) => {
+    response.status(200).json(invoices);
+});
 
-    response.writeHead(
-        404,
-        { 'content-type': 'application/json'}
-    );
-    response.end(JSON.stringify({message: 'Recurso não encontrado.'}))
-}).listen(3000);
+app.use((request, response) => {
+    response.status(404).json({ error: { 
+        status: 404,
+        message: 'Recurso não encontrado.' 
+
+    }})
+}); //permite criar um intermediário que vai executar algo em algum momento (middler). parece com if/else
+
+app.listen(3000); // escutar a porta 3000
