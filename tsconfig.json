@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "strict": true, // tudo que estiver errado o JS alerta
+        "erasableSyntaxOnly": true, // nem tudo é possível se traduzir, o compilador mostra um erro caso algo esteja diferente do JS
+        "allowImportingTsExtensions": true, // para importar arquivos TS
+        "noEmit": true, // não emitir nenhum arquivo JS referente ao meu TS
+        "types": ["node"] // typescript reconhece node
+    }
+}
