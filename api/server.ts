@@ -22,26 +22,38 @@ interface Invoice { // Cria uma interface padrão para os meus objetos
 
 const invoices: Invoice[] = [{
     id: 1, // identificador
-    amount: 125000, // é uma fatura de 1250, mas ficou com mais dois 0 para serem as casas decimais
+    amount: 125837, // é uma fatura de 1258.37, mas ficou com mais dois 0 para serem as casas decimais
     status: 'pending', // fatura pendente
-    issueDate: '01-10-2026', // data de emissão
-    dueDate: '03-11-2026', // data de vencimento
+    issueDate: '2026-10-25', // data de emissão
+    dueDate: '2026-10-20', // data de vencimento
     customer: { // informações acerca do cliente
-        id: 7,
+        id: 5,
         name: 'Construtora Meridiano',
-        email: 'construtora@meridiano.com'
+        email: 'comerciala@meridiano.com.br'
     }
 
 }, {
     id: 2,
     amount: 35000,
     status: 'paid',
-    issueDate: '02-10-2026',
-    dueDate: '05-11-2026',
+    issueDate: '2026-10-01',
+    dueDate: '2026-10-31',
     customer: {
-        id: 7,
-        name: 'Construtora Meridiano',
-        email: 'construtora@meridiano.com'
+        id: 10,
+        name: 'Gráfica Nova',
+        email: 'grafica@nova.com.br'
+    }
+},
+{
+    id: 3,
+    amount: 1801830,
+    status: 'pending',
+    issueDate: '2026-10-20',
+    dueDate: '2026-10-25',
+    customer: {
+        id: 15,
+        name: 'Tem de Tudo',
+        email: 'comercial@temdetudo.com.br'
     }
 }];
 
