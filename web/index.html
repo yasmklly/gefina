@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Gefina</title>
+</head>
+
+<body>
+    <div></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js">
+        // crossorigin é algo que vem de fora do código
+    </script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js">
+    </script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js">
+    </script>
+
+    <script type='text/babel'>
+        const container = document.querySelector('div');
+
+        const root = ReactDOM.createRoot(container);
+
+        const invoices = [
+            {
+                id: 1, // identificador
+                amount: 125837, // é uma fatura de 1258.37, mas ficou com mais dois 0 para serem as casas decimais
+                status: 'pending', // fatura pendente
+                issueDate: '2026-10-25', // data de emissão
+                dueDate: '2026-10-20', // data de vencimento
+                customer: {
+                    // informações acerca do cliente
+                    id: 5,
+                    name: 'Construtora Meridiano',
+                    email: 'comerciala@meridiano.com.br'
+                }
+            },
+            {
+                id: 2,
+                amount: 35000,
+                status: 'paid',
+                issueDate: '2026-10-01',
+                dueDate: '2026-10-31',
+                customer: {
+                    id: 10,
+                    name: 'Gráfica Nova',
+                    email: 'grafica@nova.com.br'
+                }
+            },
+            {
+                id: 3,
+                amount: 1801830,
+                status: 'pending',
+                issueDate: '2026-10-20',
+                dueDate: '2026-10-25',
+                customer: {
+                    id: 15,
+                    name: 'Tem de Tudo',
+                    email: 'comercial@temdetudo.com.br'
+                }
+            }
+        ];
+
+        const InvoiceTitle = () => {
+            return <h1>Faturas</h1>;
+        };
+
+        const InvoiceRow = () => {
+            return <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+
+        const InvoiceTable = () => {
+            return <table>
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Valor</th>
+                        <th>Emissão</th>
+                        <th>Vencimento</th>
+                        <th>Situação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <InvoiceRow/>
+                    <InvoiceRow/>
+                    <InvoiceRow/>
+                </tbody>
+            </table>
+        };
+
+        const App = () => {
+            return <>
+                <InvoiceTitle/>
+                <InvoiceTable/>
+            </>;
+        };
+
+        root.render(<App/>); // Tag void <Title/> é uma tag vazia
+    </script>
+
+</body>
+
+</html>
